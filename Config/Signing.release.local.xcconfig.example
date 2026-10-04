@@ -1,0 +1,6 @@
+// Copy to Signing.release.local.xcconfig for GitHub DMG releases.
+// Use an existing Developer ID Application identity for your distribution team.
+// Find the certificate SHA-1 with: security find-identity -v -p codesigning
+// Keep the local development identity in Signing.local.xcconfig separate.
+DEVELOPMENT_TEAM = YOUR_DISTRIBUTION_TEAM_ID
+CODE_SIGN_IDENTITY = YOUR_DEVELOPER_ID_CERTIFICATE_SHA1

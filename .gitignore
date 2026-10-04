@@ -1,0 +1,37 @@
+# macOS and Xcode user state
+.DS_Store
+xcuserdata/
+*.xcuserstate
+
+# Generated builds, test results and distribution artifacts
+.build/
+.swiftpm/
+build/
+DerivedData/
+*.xcresult/
+*.xcarchive/
+*.app/
+*.dmg
+*.dmg.sha256
+*.log
+
+# Machine-local signing choices and credentials (commit examples only)
+*.local.xcconfig
+.env
+.env.*
+!.env.example
+*.p12
+*.pfx
+*.p8
+*.pem
+*.key
+*.cer
+*.certSigningRequest
+*.mobileprovision
+*.provisionprofile
+
+# Private working instructions, plans and detailed local QA records
+AGENTS.md
+PLAN.md
+docs/QA.md
+docs/corpus-results.md

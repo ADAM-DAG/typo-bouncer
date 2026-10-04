@@ -1,0 +1,1802 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "%@ is not supported by Apple’s on-device model yet.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ is not supported by Apple’s on-device model yet."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ wordt nog niet ondersteund door het lokale model van Apple."
+          }
+        }
+      }
+    },
+    "%lld characters is too much. The current limit is %lld.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld characters is too much. The current limit is %lld."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld tekens is te veel. De huidige limiet is %lld."
+          }
+        }
+      }
+    },
+    "A quick review": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A quick review"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Even controleren"
+          }
+        }
+      }
+    },
+    "About correction actions": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About correction actions"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Over tekstcorrecties"
+          }
+        }
+      }
+    },
+    "Action": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Action"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Actie"
+          }
+        }
+      }
+    },
+    "All tidied up": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All tidied up"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst bijgewerkt"
+          }
+        }
+      }
+    },
+    "Allow Typo Bouncer in Login Items to finish enabling launch at login.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow Typo Bouncer in Login Items to finish enabling launch at login."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sta Typo Bouncer toe bij Inlogonderdelen om starten bij inloggen in te schakelen."
+          }
+        }
+      }
+    },
+    "Allow keyboard access…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Allow keyboard access…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sta toetsenbordtoegang toe…"
+          }
+        }
+      }
+    },
+    "Already enabled?": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Already enabled?"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al ingeschakeld?"
+          }
+        }
+      }
+    },
+    "Also rewrites awkward wording, word order and run-on sentences for clearer flow, while keeping your meaning and tone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also rewrites awkward wording, word order and run-on sentences for clearer flow, while keeping your meaning and tone."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verbetert ook onhandige formuleringen, de woordvolgorde en te lange zinnen, met behoud van je betekenis en toon."
+          }
+        }
+      }
+    },
+    "Apple Intelligence is off": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence is off"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Intelligence staat uit"
+          }
+        }
+      }
+    },
+    "Apple’s model could not proofread this text. Your original is unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple’s model could not proofread this text. Your original is unchanged."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het model van Apple kon deze tekst niet nakijken. Je origineel is ongewijzigd."
+          }
+        }
+      }
+    },
+    "Apple’s model is still downloading or preparing. Check again shortly.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple’s model is still downloading or preparing. Check again shortly."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het model van Apple wordt nog gedownload of voorbereid. Probeer het zo opnieuw."
+          }
+        }
+      }
+    },
+    "Apple’s on-device model is available on this Mac.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple’s on-device model is available on this Mac."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het lokale model van Apple is beschikbaar op deze Mac."
+          }
+        }
+      }
+    },
+    "Apple’s on-device model is currently unavailable.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple’s on-device model is currently unavailable."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het lokale model van Apple is momenteel niet beschikbaar."
+          }
+        }
+      }
+    },
+    "Apple’s on-device model is unavailable. Check Apple Intelligence in System Settings.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple’s on-device model is unavailable. Check Apple Intelligence in System Settings."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het lokale model van Apple is niet beschikbaar. Controleer Apple Intelligence in Systeeminstellingen."
+          }
+        }
+      }
+    },
+    "Applied automatically. Use ⌘Z in your app to undo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applied automatically. Use ⌘Z in your app to undo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatisch toegepast. Gebruik ⌘Z in je app om dit ongedaan te maken."
+          }
+        }
+      }
+    },
+    "Applied. Use ⌘Z in your app to undo.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applied. Use ⌘Z in your app to undo."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toegepast. Gebruik ⌘Z in je app om dit ongedaan te maken."
+          }
+        }
+      }
+    },
+    "Apply": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toepassen"
+          }
+        }
+      }
+    },
+    "Apply to selection": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply to selection"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toepassen op selectie"
+          }
+        }
+      }
+    },
+    "Apply uses plain text. Formatting inside the selection may be lost.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apply uses plain text. Formatting inside the selection may be lost."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toepassen gebruikt platte tekst. Opmaak binnen de selectie kan verloren gaan."
+          }
+        }
+      }
+    },
+    "Applying…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applying…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wordt toegepast…"
+          }
+        }
+      }
+    },
+    "Auto mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Auto mode"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Automatische modus"
+          }
+        }
+      }
+    },
+    "Backup shortcut": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup shortcut"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reservesneltoets"
+          }
+        }
+      }
+    },
+    "Both use Apple’s on-device AI plus local checks. Your text stays on this Mac. AI can miss mistakes or misread names, so review important text.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Both use Apple’s on-device AI plus local checks. Your text stays on this Mac. AI can miss mistakes or misread names, so review important text."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beide gebruiken de lokale AI van Apple en aanvullende controles. Je tekst blijft op deze Mac. AI kan fouten missen of namen verkeerd begrijpen, dus controleer belangrijke teksten."
+          }
+        }
+      }
+    },
+    "Cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Annuleren"
+          }
+        }
+      }
+    },
+    "Cancel correction": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel correction"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correctie annuleren"
+          }
+        }
+      }
+    },
+    "Changes": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wijzigingen"
+          }
+        }
+      }
+    },
+    "Check again": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check again"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controleer opnieuw"
+          }
+        }
+      }
+    },
+    "Clipboard": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Clipboard"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Klembord"
+          }
+        }
+      }
+    },
+    "Close": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sluiten"
+          }
+        }
+      }
+    },
+    "Collapse preview": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collapse preview"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voorbeeld inklappen"
+          }
+        }
+      }
+    },
+    "Collapse preview · Esc": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Collapse preview · Esc"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voorbeeld inklappen · Esc"
+          }
+        }
+      }
+    },
+    "Copy correction": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy correction"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correctie kopiëren"
+          }
+        }
+      }
+    },
+    "Copy the correction, then paste it where you need it. Your original stays unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Copy the correction, then paste it where you need it. Your original stays unchanged."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kopieer de correctie en plak deze waar je wilt. Je oorspronkelijke tekst blijft ongewijzigd."
+          }
+        }
+      }
+    },
+    "Correct text": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correct text"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst corrigeren"
+          }
+        }
+      }
+    },
+    "Corrected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrected"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gecorrigeerd"
+          }
+        }
+      }
+    },
+    "Correcting…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correcting…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tekst corrigeren…"
+          }
+        }
+      }
+    },
+    "Correction copied.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correction copied."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correctie gekopieerd."
+          }
+        }
+      }
+    },
+    "Correction details": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correction details"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correctiedetails"
+          }
+        }
+      }
+    },
+    "Couldn't correct": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't correct"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bijwerken mislukt"
+          }
+        }
+      }
+    },
+    "Couldn’t change launch at login. Check Login Items in System Settings and try again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t change launch at login. Check Login Items in System Settings and try again."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starten bij inloggen kon niet worden gewijzigd. Controleer Inlogonderdelen in Systeeminstellingen en probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "Double-tap Control": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Double-tap Control"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Druk tweemaal op Control"
+          }
+        }
+      }
+    },
+    "Double-tap Fn / Globe": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Double-tap Fn / Globe"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Druk tweemaal op Fn / wereldbol"
+          }
+        }
+      }
+    },
+    "Enable Apple Intelligence in System Settings to use proofreading.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enable Apple Intelligence in System Settings to use proofreading."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Schakel Apple Intelligence in via Systeeminstellingen om tekst te corrigeren."
+          }
+        }
+      }
+    },
+    "English": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "English"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Engels"
+          }
+        }
+      }
+    },
+    "Excluded apps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Excluded apps"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uitgesloten apps"
+          }
+        }
+      }
+    },
+    "Fixes spelling, grammar, punctuation and capitalization with minimal wording changes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fixes spelling, grammar, punctuation and capitalization with minimal wording changes."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrigeert spelling, grammatica, leestekens en hoofdletters met zo min mogelijk wijzigingen in de formulering."
+          }
+        }
+      }
+    },
+    "Formatting is kept when your app supports rich-text paste.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Formatting is kept when your app supports rich-text paste."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De opmaak blijft behouden als je app plakken met opmaak ondersteunt."
+          }
+        }
+      }
+    },
+    "If Fn also opens Dictation, change its shortcut in macOS Keyboard settings.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If Fn also opens Dictation, change its shortcut in macOS Keyboard settings."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Als Fn ook Dicteren opent, wijzig dan de sneltoets daarvan in de toetsenbordinstellingen van macOS."
+          }
+        }
+      }
+    },
+    "If the switch is on but access is still blocked, remove TypoBouncer from the permission list and add this copy again. A development update can leave an older permission behind.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If the switch is on but access is still blocked, remove TypoBouncer from the permission list and add this copy again. A development update can leave an older permission behind."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Als de schakelaar aan staat maar de toegang nog geblokkeerd is, verwijder TypoBouncer dan uit de toegangslijst en voeg deze versie opnieuw toe. Na een ontwikkelupdate kan een oude toegang achterblijven."
+          }
+        }
+      }
+    },
+    "Improve sentences": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Improve sentences"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zinnen verbeteren"
+          }
+        }
+      }
+    },
+    "Key combination": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Key combination"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toetscombinatie"
+          }
+        }
+      }
+    },
+    "Keyboard access is needed for double-tap.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyboard access is needed for double-tap."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toetsenbordtoegang is nodig om tweemaal drukken te herkennen."
+          }
+        }
+      }
+    },
+    "Launch at login": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Launch at login"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start bij inloggen"
+          }
+        }
+      }
+    },
+    "Learn about Proofread and Improve sentences.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Learn about Proofread and Improve sentences."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meer over Corrigeren en Zinnen verbeteren."
+          }
+        }
+      }
+    },
+    "Looks good already": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Looks good already"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ziet er al goed uit"
+          }
+        }
+      }
+    },
+    "Model is getting ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model is getting ready"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model wordt voorbereid"
+          }
+        }
+      }
+    },
+    "Model ready": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model ready"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model gereed"
+          }
+        }
+      }
+    },
+    "Model unavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model unavailable"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model niet beschikbaar"
+          }
+        }
+      }
+    },
+    "No changes suggested. The model can still miss errors.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No changes suggested. The model can still miss errors."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen wijzigingen voorgesteld. Het model kan nog steeds fouten missen."
+          }
+        }
+      }
+    },
+    "No text selected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No text selected"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Geen tekst geselecteerd"
+          }
+        }
+      }
+    },
+    "Off": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Off"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Uit"
+          }
+        }
+      }
+    },
+    "Open Login Items…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Login Items…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Inlogonderdelen…"
+          }
+        }
+      }
+    },
+    "Open permission settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open permission settings"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toegangsinstellingen openen"
+          }
+        }
+      }
+    },
+    "Other apps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other apps"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Andere apps"
+          }
+        }
+      }
+    },
+    "Password and secure fields are left alone.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Password and secure fields are left alone."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Wachtwoordvelden en beveiligde velden worden overgeslagen."
+          }
+        }
+      }
+    },
+    "Preview": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Voorbeeld"
+          }
+        }
+      }
+    },
+    "Proofread": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proofread"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corrigeren"
+          }
+        }
+      }
+    },
+    "Quit Typo Bouncer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quit Typo Bouncer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Typo Bouncer"
+          }
+        }
+      }
+    },
+    "Review carefully: this includes a name change or substantial edits.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review carefully: this includes a name change or substantial edits."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controleer zorgvuldig: dit bevat een gewijzigde naam of ingrijpende aanpassingen."
+          }
+        }
+      }
+    },
+    "Review correction…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Review correction…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Correctie bekijken…"
+          }
+        }
+      }
+    },
+    "Select all text in the focused editable field when you use your shortcut with no selection.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select all text in the focused editable field when you use your shortcut with no selection."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecteer alle tekst in het actieve bewerkbare veld wanneer je je sneltoets zonder selectie gebruikt."
+          }
+        }
+      }
+    },
+    "Select some text in an editable field, then use your shortcut again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select some text in an editable field, then use your shortcut again."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecteer tekst in een bewerkbaar veld en gebruik daarna je sneltoets opnieuw."
+          }
+        }
+      }
+    },
+    "Select text when nothing is selected": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Select text when nothing is selected"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecteer tekst als niets is geselecteerd"
+          }
+        }
+      }
+    },
+    "Settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instellingen"
+          }
+        }
+      }
+    },
+    "Settings…": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Instellingen…"
+          }
+        }
+      }
+    },
+    "Shortcut": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shortcut"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sneltoets"
+          }
+        }
+      }
+    },
+    "Start Typo Bouncer quietly in the menu bar when you log in to your Mac.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Typo Bouncer quietly in the menu bar when you log in to your Mac."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start Typo Bouncer stil in de menubalk wanneer je inlogt op je Mac."
+          }
+        }
+      }
+    },
+    "Tap and release the same key twice. If Fn also opens Dictation, change its shortcut in macOS Keyboard settings.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap and release the same key twice. If Fn also opens Dictation, change its shortcut in macOS Keyboard settings."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Druk tweemaal op dezelfde toets en laat deze telkens los. Als Fn ook Dicteren opent, wijzig dan de sneltoets daarvan in de toetsenbordinstellingen van macOS."
+          }
+        }
+      }
+    },
+    "That took too long. Your original text is unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "That took too long. Your original text is unchanged."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dat duurde te lang. Je originele tekst is ongewijzigd."
+          }
+        }
+      }
+    },
+    "The clipboard changed. Nothing was pasted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The clipboard changed. Nothing was pasted."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het klembord is gewijzigd. Er is niets geplakt."
+          }
+        }
+      }
+    },
+    "The clipboard could not be saved safely. Nothing was pasted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The clipboard could not be saved safely. Nothing was pasted."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het klembord kon niet veilig worden bewaard. Er is niets geplakt."
+          }
+        }
+      }
+    },
+    "The clipboard is too large to preserve. Nothing was pasted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The clipboard is too large to preserve. Nothing was pasted."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het klembord is te groot om te bewaren. Er is niets geplakt."
+          }
+        }
+      }
+    },
+    "The correction could not be generated safely. Try again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The correction could not be generated safely. Try again."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De correctie kon niet veilig worden gemaakt. Probeer het opnieuw."
+          }
+        }
+      }
+    },
+    "The model changed a number, link, code or emoji. Your original is unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The model changed a number, link, code or emoji. Your original is unchanged."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het model heeft een getal, link, code of emoji gewijzigd. Je origineel is ongewijzigd."
+          }
+        }
+      }
+    },
+    "The model changed the language. Your original is unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The model changed the language. Your original is unchanged."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het model heeft de taal gewijzigd. Je origineel is ongewijzigd."
+          }
+        }
+      }
+    },
+    "The model changed the line breaks. Your original is unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The model changed the line breaks. Your original is unchanged."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het model heeft de regeleinden gewijzigd. Je origineel is ongewijzigd."
+          }
+        }
+      }
+    },
+    "The model’s output did not pass the safety checks. Your original is unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The model’s output did not pass the safety checks. Your original is unchanged."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De uitvoer van het model voldoet niet aan de controles. Je origineel is ongewijzigd."
+          }
+        }
+      }
+    },
+    "The paste could not be confirmed. Check your text before trying again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The paste could not be confirmed. Check your text before trying again."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Het plakken kon niet worden bevestigd. Controleer je tekst voordat je het opnieuw probeert."
+          }
+        }
+      }
+    },
+    "The previous request is still finishing. Try again shortly.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The previous request is still finishing. Try again shortly."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De vorige aanvraag wordt nog afgerond. Probeer het zo nog eens."
+          }
+        }
+      }
+    },
+    "The text or focus changed. Copy the correction or proofread again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The text or focus changed. Copy the correction or proofread again."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "De tekst of focus is gewijzigd. Kopieer de correctie of laat de tekst opnieuw nakijken."
+          }
+        }
+      }
+    },
+    "This Mac is not supported": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Mac is not supported"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze Mac wordt niet ondersteund"
+          }
+        }
+      }
+    },
+    "This change needs a review before applying.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This change needs a review before applying."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bekijk deze wijziging voordat je deze toepast."
+          }
+        }
+      }
+    },
+    "This edit cannot preserve the selection’s formatting. Copy the correction to apply it yourself.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This edit cannot preserve the selection’s formatting. Copy the correction to apply it yourself."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze wijziging kan de opmaak van de selectie niet behouden. Kopieer de correctie om deze zelf toe te passen."
+          }
+        }
+      }
+    },
+    "This field’s formatting needs review before applying.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This field’s formatting needs review before applying."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Controleer de opmaak van dit veld voordat je de correctie toepast."
+          }
+        }
+      }
+    },
+    "This language is not supported by Apple’s on-device model yet.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This language is not supported by Apple’s on-device model yet."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze taal wordt nog niet ondersteund door het lokale model van Apple."
+          }
+        }
+      }
+    },
+    "This text exceeds the model’s safe context budget. Try a shorter selection.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This text exceeds the model’s safe context budget. Try a shorter selection."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze tekst is te groot voor het model. Probeer een kortere selectie."
+          }
+        }
+      }
+    },
+    "This text is too large. Try a shorter selection.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This text is too large. Try a shorter selection."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deze tekst is te groot. Probeer een kortere selectie."
+          }
+        }
+      }
+    },
+    "Tidying up…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tidying up…"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Even bijwerken…"
+          }
+        }
+      }
+    },
+    "Trigger": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trigger"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activering"
+          }
+        }
+      }
+    },
+    "Typo Bouncer": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typo Bouncer"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typo Bouncer"
+          }
+        }
+      }
+    },
+    "Typo Bouncer is turned off for this app.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typo Bouncer is turned off for this app."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typo Bouncer is uitgeschakeld voor deze app."
+          }
+        }
+      }
+    },
+    "Typo Bouncer needs a Mac that supports Apple Intelligence.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typo Bouncer needs a Mac that supports Apple Intelligence."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typo Bouncer vereist een Mac die Apple Intelligence ondersteunt."
+          }
+        }
+      }
+    },
+    "Use Typo Bouncer in other apps": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Typo Bouncer in other apps"
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Typo Bouncer gebruiken in andere apps"
+          }
+        }
+      }
+    },
+    "macOS still reports access as blocked for this copy. Re-add it, then quit and reopen Typo Bouncer.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS still reports access as blocked for this copy. Re-add it, then quit and reopen Typo Bouncer."
+          }
+        },
+        "nl": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "macOS geeft nog aan dat de toegang voor deze versie geblokkeerd is. Voeg deze opnieuw toe, sluit Typo Bouncer af en open de app opnieuw."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

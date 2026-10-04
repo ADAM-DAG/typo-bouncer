@@ -1,0 +1,5 @@
+// Copy to Signing.local.xcconfig. Use an existing Apple Development identity.
+// Find the certificate SHA-1 with: security find-identity -v -p codesigning
+// Keep this local identity consistent between installed updates.
+DEVELOPMENT_TEAM = YOUR_TEAM_ID
+CODE_SIGN_IDENTITY = YOUR_CERTIFICATE_SHA1
