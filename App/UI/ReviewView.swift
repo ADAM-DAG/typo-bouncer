@@ -1,9 +1,16 @@
 import AppKit
 import BouncerCore
+import Observation
 import SwiftUI
+
+@MainActor @Observable
+final class ReviewFocusState {
+    var keyboardReady = false
+}
 
 struct IslandReviewView: View {
     @Bindable var coordinator: ProofreadingCoordinator
+    let focus: ReviewFocusState
     let apply: () -> Void
     let collapse: () -> Void
     @State private var showChanges = true
@@ -53,7 +60,8 @@ struct IslandReviewView: View {
                     Image(systemName: "xmark").font(.system(size: 10, weight: .semibold))
                         .frame(width: 26, height: 26)
                 }.buttonStyle(IslandControlStyle())
-                    .accessibilityLabel("Collapse preview").help("Collapse preview · Esc")
+                    .accessibilityLabel("Collapse preview")
+                    .help(focus.keyboardReady ? String(localized: "Collapse preview · Esc") : String(localized: "Collapse preview"))
                     .disabled(coordinator.applying)
             }
             if let result = coordinator.result, !result.isUnchanged {
@@ -103,7 +111,9 @@ struct IslandReviewView: View {
                         Button(action: apply) {
                             HStack(spacing: 12) {
                                 Text("Apply").font(.system(size: 12, weight: .semibold))
-                                Image(systemName: "return").font(.system(size: 10, weight: .medium)).opacity(0.6)
+                                if focus.keyboardReady {
+                                    Image(systemName: "return").font(.system(size: 10, weight: .medium)).opacity(0.6)
+                                }
                             }.padding(.horizontal, 14).frame(height: compact ? 28 : 32)
                         }.buttonStyle(IslandControlStyle(prominent: true))
                             .disabled(!coordinator.canApply).accessibilityLabel("Apply to selection")

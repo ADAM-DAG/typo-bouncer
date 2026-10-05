@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E8861919273791A29C781DBC /* UpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB21D584D1B4D326C02F24E9 /* UpdateTests.swift */; };
+		4832D73D686C96B83C7932C2 /* UpdateTrust.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8563F3D12E10A73B723198B /* UpdateTrust.swift */; };
+		5EC45ED2F24F4CDBE75A4685 /* UpdateTransport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89F607444E4166A171207AE8 /* UpdateTransport.swift */; };
+		AB56ACF06DE320E6271FEC0A /* UpdateInstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94D2ECA6DA62A621F67A5D6C /* UpdateInstaller.swift */; };
+		CEE9C37ADDECD6B30EE05D7A /* AppUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E420AE9A3BE5420B968A366 /* AppUpdater.swift */; };
 		01CD6F50548A75A2167AD992 /* ModelStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60CB472EF2867FDFAE5126BB /* ModelStatusTests.swift */; };
 		0C2D47E41CCFA8D637703F99 /* SpellingHints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 983FEF17FDE20B321F43542D /* SpellingHints.swift */; };
 		145307B17126B6227FCFDC17 /* ModelStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269CE5DF23E9750D374F64EB /* ModelStatus.swift */; };
@@ -60,6 +65,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FB21D584D1B4D326C02F24E9 /* UpdateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdateTests.swift; path = UpdateTests.swift; sourceTree = "<group>"; };
+		A8563F3D12E10A73B723198B /* UpdateTrust.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdateTrust.swift; path = Updates/UpdateTrust.swift; sourceTree = "<group>"; };
+		89F607444E4166A171207AE8 /* UpdateTransport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdateTransport.swift; path = Updates/UpdateTransport.swift; sourceTree = "<group>"; };
+		94D2ECA6DA62A621F67A5D6C /* UpdateInstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UpdateInstaller.swift; path = Updates/UpdateInstaller.swift; sourceTree = "<group>"; };
+		0E420AE9A3BE5420B968A366 /* AppUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppUpdater.swift; path = Updates/AppUpdater.swift; sourceTree = "<group>"; };
 		0479416BA9A510382134B43E /* PRIVACY.md */ = {isa = PBXFileReference; includeInIndex = 1; path = PRIVACY.md; sourceTree = "<group>"; };
 		08AC884BDBD0F92C39B54DE5 /* SelectionFormatting.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SelectionFormatting.swift; path = Capture/SelectionFormatting.swift; sourceTree = "<group>"; };
 		0E9D6689F614AA7EAC7B4564 /* AppFailure.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppFailure.swift; sourceTree = "<group>"; };
@@ -172,6 +182,7 @@
 		7B0786604F5A5598617ECB44 /* AppTests */ = {
 			isa = PBXGroup;
 			children = (
+				FB21D584D1B4D326C02F24E9 /* UpdateTests.swift */,
 				2FAE8AAC2BF4115AE24E2F77 /* AppSettingsTests.swift */,
 				60CB472EF2867FDFAE5126BB /* ModelStatusTests.swift */,
 				5B9184DD989DE1E64821A0B0 /* ProofreadingTests.swift */,
@@ -201,6 +212,10 @@
 		EA497098F848EB88910A9B14 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				A8563F3D12E10A73B723198B /* UpdateTrust.swift */,
+				89F607444E4166A171207AE8 /* UpdateTransport.swift */,
+				94D2ECA6DA62A621F67A5D6C /* UpdateInstaller.swift */,
+				0E420AE9A3BE5420B968A366 /* AppUpdater.swift */,
 				3A8AE694B437C5C1E16DF133 /* AppModel.swift */,
 				6C66F0F7F498CFEB7EA38837 /* AppSettings.swift */,
 				F17BB47812A14A0DB2166EE2 /* LaunchAtLogin.swift */,
@@ -352,6 +367,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4832D73D686C96B83C7932C2 /* UpdateTrust.swift in Sources */,
+				5EC45ED2F24F4CDBE75A4685 /* UpdateTransport.swift in Sources */,
+				AB56ACF06DE320E6271FEC0A /* UpdateInstaller.swift in Sources */,
+				CEE9C37ADDECD6B30EE05D7A /* AppUpdater.swift in Sources */,
 				3E2AB925E0D5D287FED9B0F4 /* AppModel.swift in Sources */,
 				9BA0D2635B626208F3E88DC8 /* AppSettings.swift in Sources */,
 				F17BB47812A14A0DB2166EE1 /* LaunchAtLogin.swift in Sources */,
@@ -384,6 +403,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8861919273791A29C781DBC /* UpdateTests.swift in Sources */,
 				4301092694EF3447DC9156CF /* AppSettingsTests.swift in Sources */,
 				01CD6F50548A75A2167AD992 /* ModelStatusTests.swift in Sources */,
 				BD90D0FAF4CC31E79A1A84F5 /* ProofreadingTests.swift in Sources */,
@@ -495,7 +515,7 @@
 				CODE_SIGN_IDENTITY = "Developer ID Application";
 				CODE_SIGN_STYLE = Manual;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				ENABLE_APP_SANDBOX = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = App/Info.plist;
@@ -542,7 +562,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				ENABLE_APP_SANDBOX = NO;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = App/Info.plist;

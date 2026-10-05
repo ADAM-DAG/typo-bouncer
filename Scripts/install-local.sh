@@ -4,16 +4,36 @@ cd "$(dirname "$0")/.."
 
 migrate_signing=false
 launch_app=true
-for argument in "$@"; do
-  case "$argument" in
-    --migrate-signing) migrate_signing=true ;;
-    --no-open) launch_app=false ;;
-    *) echo "Unknown argument: $argument" >&2; exit 2 ;;
+developer_id=false
+local_app_destination="$HOME/Applications/TypoBouncer.app"
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --migrate-signing) migrate_signing=true; shift ;;
+    --no-open) launch_app=false; shift ;;
+    --developer-id) developer_id=true; shift ;;
+    --destination)
+      if [[ $# -lt 2 || "$2" != /*/TypoBouncer.app ]]; then
+        echo 'Use --destination with an absolute path ending in /TypoBouncer.app.' >&2
+        exit 2
+      fi
+      local_app_destination="$2"; shift 2 ;;
+    *) echo "Unknown argument: $1" >&2; exit 2 ;;
   esac
 done
-Scripts/build-local.sh
-candidate_app=build/LocalDerivedData/Build/Products/Debug/TypoBouncer.app
-local_app_destination="$HOME/Applications/TypoBouncer.app"
+if [[ "$developer_id" == true ]]; then
+  Scripts/build-release.sh
+  candidate_app=build/Release/export/TypoBouncer.app
+else
+  Scripts/build-local.sh
+  candidate_app=build/LocalDerivedData/Build/Products/Debug/TypoBouncer.app
+fi
+verify_candidate() {
+  if [[ "$developer_id" == true ]]; then
+    Scripts/verify-release.sh "$1"
+  else
+    Scripts/verify-local-signing.sh "$1"
+  fi
+}
 
 if [[ -d "$local_app_destination" ]]; then
   installed_requirement=$(codesign -d -r- "$local_app_destination" 2>&1 | sed -n 's/^.*designated => //p')
@@ -30,8 +50,9 @@ if pgrep -x TypoBouncer >/dev/null; then
   echo 'Quit Typo Bouncer before updating the installed copy.' >&2
   exit 1
 fi
-mkdir -p "$HOME/Applications"
-staging=$(mktemp -d "$HOME/Applications/.TypoBouncer-install.XXXXXX")
+local_app_parent=$(dirname "$local_app_destination")
+mkdir -p "$local_app_parent"
+staging=$(mktemp -d "$local_app_parent/.TypoBouncer-install.XXXXXX")
 cleanup() {
   if [[ -d "$staging/previous.app" && ! -e "$local_app_destination" ]]; then
     mv "$staging/previous.app" "$local_app_destination"
@@ -40,7 +61,7 @@ cleanup() {
 }
 trap cleanup EXIT
 ditto "$candidate_app" "$staging/TypoBouncer.app"
-Scripts/verify-local-signing.sh "$staging/TypoBouncer.app"
+verify_candidate "$staging/TypoBouncer.app"
 if [[ -d "$local_app_destination" ]]; then mv "$local_app_destination" "$staging/previous.app"; fi
 mv "$staging/TypoBouncer.app" "$local_app_destination"
 echo "Installed certificate-signed build at $local_app_destination"

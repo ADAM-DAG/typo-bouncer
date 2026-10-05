@@ -7,6 +7,7 @@ import Observation
 final class AppModel {
     let settings = AppSettings()
     let launchAtLogin = LaunchAtLogin()
+    let updater = AppUpdater()
     let coordinator = ProofreadingCoordinator()
     let accessibility = AccessibilityGate()
     private let languageModel = SystemLanguageModel(useCase: .general, guardrails: .permissiveContentTransformations)
@@ -42,6 +43,7 @@ final class AppModel {
         // Double-taps use an opt-in, passive Core Graphics listener.
         accessibility.start(); configureShortcut()
         coordinator.prewarm()
+        updater.start()
     }
 
     func configureShortcut() {
@@ -62,7 +64,8 @@ final class AppModel {
 
     func trigger() {
         let command = settings.action
-        guard !coordinator.working, !coordinator.applying, reviewAction == nil else { return }
+        guard !coordinator.working, !coordinator.applying, reviewAction == nil,
+              updater.phase != .relaunching else { return }
         statusPresenter?.hide()
         guard !NSApplication.shared.isActive else { return }
         guard accessibility.refresh() else { permissionPresenter?.show(); return }
@@ -99,13 +102,14 @@ final class AppModel {
     }
 
     private func applyReviewedCorrection() {
-        guard coordinator.canApply, reviewAction == nil, let statusPresenter else { return }
+        guard coordinator.canApply, reviewAction == nil, let statusPresenter,
+              updater.phase != .relaunching else { return }
         reviewAction = Task { [weak self] in
             guard let self else { return }
             defer { reviewAction = nil }
             do {
                 try await statusPresenter.restoreSourceFocus()
-                guard coordinator.canApply else { return }
+                guard coordinator.canApply, updater.phase != .relaunching else { return }
                 coordinator.collapseReview()
                 coordinator.apply()
             } catch { coordinator.blockReviewedApply(error) }

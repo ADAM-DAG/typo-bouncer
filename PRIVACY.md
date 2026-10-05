@@ -7,8 +7,22 @@ function words and negations. Sentence completion uses local language analysis, 
 separate on-device pass for longer unpunctuated statements. Bare protected tokens, such
 as a URL or code-only selection, need no model request. Ordinary trailing spaces/tabs
 outside protected code can still be removed locally.
-There is no cloud fallback, app networking, analytics, telemetry, text logging, update
-checker, or third-party code.
+There is no cloud fallback, analytics, telemetry, text logging or third-party code.
+The only app networking is the GitHub software updater, isolated from correction,
+selection and clipboard services.
+
+Developer ID release builds check `ADAM-DAG/typo-bouncer` on GitHub once a day by default.
+Turn off **Check for updates automatically** in Settings to use manual checks instead.
+Checks fetch public release metadata; **Update and relaunch** downloads the release DMG,
+verifies its SHA-256, Developer ID signing continuity, sealed version and Gatekeeper
+assessment, then replaces and relaunches the app. GitHub and its release download CDN
+receive ordinary HTTPS connection information, including your IP address and a fixed
+updater User-Agent. No selected/corrected text, clipboard data, app exclusions,
+account tokens, cookies or device identifier are sent. No GitHub account is required.
+Updater preferences retain only the automatic-check choice, last check time and a
+fixed failure flag. Temporary update files contain software and release metadata,
+never user text. macOS's Gatekeeper may perform its own Apple security checks.
+Development/ad-hoc builds cannot silently switch to release signing.
 
 Selections, selected-text formatting snapshots, the current correction and clipboard
 snapshots stay in memory. There is no built-in editor or correction history. They are discarded when the process quits. Text is never written to

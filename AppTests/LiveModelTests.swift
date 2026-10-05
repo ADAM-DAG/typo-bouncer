@@ -214,6 +214,34 @@ final class LiveModelTests: XCTestCase {
             XCTAssertTrue(result.isUnchanged)
         }
     }
+    func testPrewarmedCorrectionsKeepRequestsIndependentAcrossActionsAndLanguages() async throws {
+        guard SystemLanguageModel.default.isAvailable else { throw XCTSkip("On-device model unavailable") }
+        let service = OnDeviceModel()
+        let fixtures: [(String, Command, String)] = [
+            ("Please send the file to red@example.com.", .proofread, "red@example.com"),
+            ("Please send the file to pink@example.com.", .proofread, "pink@example.com"),
+            ("Stuur het bestand naar blue@example.com.", .proofread, "blue@example.com"),
+            ("Stuur het bestand naar cyan@example.com.", .proofread, "cyan@example.com"),
+            ("Please send the file to green@example.com.", .improveSentences, "green@example.com"),
+            ("Please send the file to lime@example.com.", .improveSentences, "lime@example.com"),
+            ("Stuur het bestand naar yellow@example.com.", .improveSentences, "yellow@example.com"),
+            ("Stuur het bestand naar orange@example.com.", .improveSentences, "orange@example.com")
+        ]
+        await service.prewarm()
+        for (index, fixture) in fixtures.enumerated() {
+            // This models the idle time between shortcuts. It is excluded from
+            // timing and gives each fresh session's prewarm a chance to finish.
+            try await Task.sleep(for: .milliseconds(1_100))
+            let started = ContinuousClock.now
+            let result = try await service.correct(fixture.0, limit: 1500, command: fixture.1)
+            print("Prewarmed synthetic fixture \(index) latency: \(started.duration(to: .now))")
+            XCTAssertEqual(result.original, fixture.0)
+            XCTAssertTrue(result.corrected.contains(fixture.2))
+            for other in fixtures where other.2 != fixture.2 {
+                XCTAssertFalse(result.corrected.contains(other.2), "A different request's protected text leaked into fixture \(index)")
+            }
+        }
+    }
     func testRealEnglishAndDutchCorrections() async throws {
         guard SystemLanguageModel.default.isAvailable else { throw XCTSkip("On-device model unavailable on this runner") }
         let service = OnDeviceModel()

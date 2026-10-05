@@ -43,7 +43,7 @@ import SwiftUI
     }
 
     func applicationShouldTerminate(_ sender: NSApplication) -> NSApplication.TerminateReply {
-        // Keep the process alive during the short clipboard restoration window.
-        model.coordinator.applying ? .terminateCancel : .terminateNow
+        // Finish clipboard restoration and update preparation before exiting.
+        (model.coordinator.applying || !model.updater.mayTerminate) ? .terminateCancel : .terminateNow
     }
 }

@@ -41,17 +41,25 @@ enum SpellingHints {
         let hint = recognizer.languageHypotheses(withMaximum: 3).max { $0.value < $1.value }
         // Routing short phrases is a hint, not the confidence gate used for validation.
         guard language == "en" || (language == nil && hint?.key == .english && (hint?.value ?? 0) >= 0.35) else { return [] }
+        let tagger = NLTagger(tagSchemes: [.lexicalClass, .lemma])
+        tagger.string = text
+        // Keep this extra model pass narrow: noun/adjective predicates of "be"
+        // can catch a missed real-word typo such as "Adam is the nest". Ranking
+        // objects of actions ("send the file", "bring the book") adds a model
+        // request and can invent a different fact. The main proofreader still
+        // checks spelling and grammar throughout the entire passage.
+        let predicates = predicateRanges(text, tagger: tagger)
+        guard !predicates.isEmpty else { return [] }
         let checker = NSSpellChecker.shared
         let tag = NSSpellChecker.uniqueSpellDocumentTag()
         defer { checker.closeSpellDocument(withTag: tag) }
         let stops: Set<String> = ["the", "and", "for", "with", "that", "this", "you", "are", "was", "have", "has", "will", "can", "not"]
         let protected = ProtectedTokens.extract(text)
-        let tagger = NLTagger(tagSchemes: [.lexicalClass])
-        tagger.string = text
         var groups: [SpellingCandidate] = []
         var seen: Set<String> = []
         text.enumerateSubstrings(in: text.startIndex..<text.endIndex, options: .byWords) { word, range, _, stop in
-            guard let word, word.count >= 3, word.count <= 18, word.utf8.allSatisfy({ (65...90).contains($0) || (97...122).contains($0) }),
+            guard predicates.contains(NSRange(range, in: text)),
+                  let word, word.count >= 3, word.count <= 18, word.utf8.allSatisfy({ (65...90).contains($0) || (97...122).contains($0) }),
                   !stops.contains(word.lowercased()), !negations.contains(word.lowercased()),
                   ChatShorthand.expand(word) == word,
                   seen.insert(word).inserted else { return }
@@ -80,5 +88,22 @@ enum SpellingHints {
             if groups.count >= 4 { stop = true }
         }
         return groups
+    }
+
+    private static func predicateRanges(_ text: String, tagger: NLTagger) -> Set<NSRange> {
+        var ranges: Set<NSRange> = []
+        var followsCopula = false
+        tagger.enumerateTags(in: text.startIndex..<text.endIndex, unit: .word, scheme: .lexicalClass,
+                             options: [.omitWhitespace, .omitPunctuation]) { tag, range in
+            if tag == .verb {
+                followsCopula = tagger.tag(at: range.lowerBound, unit: .word, scheme: .lemma).0?.rawValue == "be"
+            } else if tag == .preposition || tag == .conjunction {
+                followsCopula = false
+            } else if followsCopula, tag == .noun || tag == .adjective {
+                ranges.insert(NSRange(range, in: text))
+            }
+            return true
+        }
+        return ranges
     }
 }

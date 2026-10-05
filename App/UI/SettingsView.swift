@@ -10,6 +10,7 @@ struct SettingsView: View {
 
     var body: some View {
         @Bindable var settings = model.settings
+        @Bindable var updater = model.updater
         VStack(alignment: .leading, spacing: 0) {
             Form {
                 Section("Keyboard shortcut") {
@@ -97,6 +98,29 @@ struct SettingsView: View {
                     }
                     if model.launchAtLogin.needsApproval || model.launchAtLogin.errorMessage != nil {
                         Button("Open Login Items…") { model.launchAtLogin.openSystemSettings() }
+                    }
+                }
+                Section("Updates") {
+                    if model.updater.isReleaseInstall {
+                        Toggle("Check for updates automatically", isOn: $updater.automaticChecks)
+                            .help("Check GitHub once a day. Updates install only when you choose Update and relaunch.")
+                        HStack {
+                            Text(model.updater.status).font(.caption).foregroundStyle(.secondary)
+                            Spacer()
+                            if model.updater.phase == .checking || model.updater.phase == .downloading {
+                                Button("Cancel") { model.updater.cancel() }
+                            } else if model.updater.available != nil {
+                                Button("Update and relaunch") {
+                                    model.stopRecording()
+                                    model.updater.install { !model.coordinator.working && !model.coordinator.applying }
+                                }
+                                .disabled(model.updater.busy || model.coordinator.working || model.coordinator.applying)
+                            } else {
+                                Button("Check now") { model.updater.check() }.disabled(model.updater.busy)
+                            }
+                        }
+                    } else {
+                        Text(model.updater.status).font(.caption).foregroundStyle(.secondary)
                     }
                 }
                 Section("Other apps") {

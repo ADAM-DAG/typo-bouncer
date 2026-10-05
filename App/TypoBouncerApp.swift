@@ -1,7 +1,7 @@
 import AppKit
 import SwiftUI
 
-@main @MainActor
+@MainActor
 struct TypoBouncerApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var delegate
 
@@ -21,9 +21,12 @@ struct TypoBouncerApp: App {
                 Button("Review correction…") { model.requestCorrectionReview() }
             }
             Divider()
+            if model.updater.available != nil {
+                Text("Update available in Settings")
+            }
             Button("Settings…") { delegate.showSettings() }.keyboardShortcut(",")
             Button("Quit Typo Bouncer") { NSApplication.shared.terminate(nil) }
-                .keyboardShortcut("q").disabled(model.coordinator.applying)
+                .keyboardShortcut("q").disabled(model.coordinator.applying || !model.updater.mayTerminate)
         }.menuBarExtraStyle(.menu)
     }
 }

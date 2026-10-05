@@ -525,14 +525,17 @@ final class CorrectionStatusPresenter {
     private var wantsReviewFocus = false
     private var restoringSource = false
     private var focusAcquisition: Task<Void, Never>?
-    private var pendingExpansion: (() -> Void)?
+    private let reviewFocus = ReviewFocusState()
+    private var pendingReviewKeyAction: ((ReviewKeyAction) -> Void)?
     private var applicationDeactivationObserver: NSObjectProtocol?
-    var isReviewWaitingForFocus: Bool { pendingExpansion != nil }
+    var isReviewWaitingForFocus: Bool { isReviewExpanded && wantsReviewFocus && !reviewFocus.keyboardReady }
     private var focusSession = UUID()
 
     init(frontmost: @escaping () -> pid_t? = { NSWorkspace.shared.frontmostApplication?.processIdentifier },
          ownPID: pid_t = ProcessInfo.processInfo.processIdentifier,
-         activateReview: @escaping () -> Void = { NSApplication.shared.activate() },
+         // Review follows the user's correction command. Request activation even
+         // when the source app doesn't participate in cooperative activation.
+         activateReview: @escaping () -> Void = { NSApplication.shared.activate(ignoringOtherApps: true) },
          activateSource: @escaping (pid_t) -> Bool = { pid in
              guard let source = NSRunningApplication(processIdentifier: pid), !source.isTerminated else { return false }
              NSApplication.shared.yieldActivation(to: source)
@@ -566,7 +569,7 @@ final class CorrectionStatusPresenter {
     }
 
     private func reviewLostFocus() {
-        guard isReviewExpanded, wantsReviewFocus, pendingExpansion == nil, !restoringSource else { return }
+        guard isReviewExpanded, wantsReviewFocus, !isReviewWaitingForFocus, !restoringSource else { return }
         // A visible review must never promise Return while another window owns it.
         // The correction remains in the coordinator for explicit reopening.
         suspend()
@@ -732,7 +735,7 @@ final class CorrectionStatusPresenter {
         if isReviewExpanded {
             current = status; pill.update(status, reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion)
             if wantsReviewFocus && !restoringSource &&
-                (!panel.allowsReviewFocus || (pendingExpansion != nil && focusAcquisition == nil)) { acquireReviewFocus() }
+                (!panel.allowsReviewFocus || (isReviewWaitingForFocus && focusAcquisition == nil)) { acquireReviewFocus() }
             return // The observable review updates in place, preserving scroll/selection.
         }
         let interruptedBounds = contraction == nil ? nil : pill.capsule.presentation()?.bounds ?? pill.capsule.bounds
@@ -753,38 +756,45 @@ final class CorrectionStatusPresenter {
         isReviewExpanded = true; current = status
         reviewSourcePID = sourcePID ?? frontmost().flatMap { $0 == ownPID ? nil : $0 }
         wantsReviewFocus = focus
+        reviewFocus.keyboardReady = false
         panel.ignoresMouseEvents = false; panel.allowsReviewFocus = true
         panel.reviewKeyAction = nil
-        pendingExpansion = { [weak self] in
-            guard let self else { return }
-            guard self.position(self.lastAnchor ?? anchor) else { self.suspend(); return }
-            let host = NSHostingView(rootView: IslandReviewView(coordinator: coordinator, apply: {
-                guard coordinator.canApply else { return }; apply()
-            }, collapse: collapse))
-            host.sizingOptions = []
-            self.pill.expand(with: host, from: oldBounds,
-                position: CGPoint(x: globalCenter.x - self.panel.frame.minX, y: globalCenter.y - self.panel.frame.minY), cornerRadius: oldCorner)
-            self.panel.reviewKeyAction = { action in
-                switch action {
-                case .apply: if coordinator.canApply { apply() }
-                case .collapse: if !coordinator.applying { collapse() }
-                }
+        let reviewAction: (ReviewKeyAction) -> Void = { [weak self] action in
+            guard let self, self.isReviewExpanded, !self.restoringSource else { return }
+            if self.wantsReviewFocus {
+                guard self.frontmost() == self.ownPID, self.reviewIsKey(self.panel), self.panel.allowsReviewFocus else { return }
+                // A mouse click can confirm focus before the acquisition task has
+                // settled. Keyboard approval stays disabled until that task finishes.
+                if self.isReviewWaitingForFocus { self.finishFocusAcquisition() }
+            }
+            switch action {
+            case .apply: if coordinator.canApply { apply() }
+            case .collapse: if !coordinator.applying { collapse() }
             }
         }
+        pendingReviewKeyAction = reviewAction
+        // Visibility must not depend on an asynchronous activation request. Show
+        // the correction immediately; only its keyboard actions wait for focus.
+        guard position(lastAnchor ?? anchor) else { suspend(); return }
+        let host = NSHostingView(rootView: IslandReviewView(coordinator: coordinator, focus: reviewFocus,
+            apply: { reviewAction(.apply) }, collapse: { reviewAction(.collapse) }))
+        host.sizingOptions = []
+        pill.expand(with: host, from: oldBounds,
+            position: CGPoint(x: globalCenter.x - panel.frame.minX, y: globalCenter.y - panel.frame.minY), cornerRadius: oldCorner)
         panel.orderFrontRegardless()
         if focus { acquireReviewFocus() } else { finishFocusAcquisition() }
         startTracking(status: status, sourcePID: sourcePID, follow: follow, isCurrent: isCurrent)
     }
 
     private func finishFocusAcquisition() {
-        let expand = pendingExpansion; pendingExpansion = nil
-        expand?()
+        reviewFocus.keyboardReady = true
+        panel.reviewKeyAction = pendingReviewKeyAction
     }
 
     private func acceptsForeground(sourcePID: pid_t?) -> Bool {
         if isReviewExpanded && wantsReviewFocus {
             // Activation can take multiple run-loop turns. While acquiring it, keep
-            // the compact indicator, but abandon review if the user switches elsewhere.
+            // the visible review, but abandon it if the user switches elsewhere.
             guard let active = frontmost() else { return true }
             return active == ownPID || active == reviewSourcePID
         }
@@ -816,8 +826,8 @@ final class CorrectionStatusPresenter {
                         panel.makeKeyAndOrderFront(nil); panel.makeFirstResponder(pill)
                     }
                 }
-                // Failed activation leaves a clickable compact indicator, never an
-                // expanded panel whose Return key still belongs to the message field.
+                // Failed activation keeps the correction visible without advertising
+                // Return or accepting keyboard approval from an unfocused window.
                 guard clock.now < deadline else { focusAcquisition = nil; return }
                 do { try await Task.sleep(for: .milliseconds(16)) } catch { return }
             }
@@ -828,7 +838,7 @@ final class CorrectionStatusPresenter {
     /// original source actually becomes active, and a third app is never overridden.
     func restoreSourceFocus() async throws {
         let active = frontmost()
-        guard isReviewExpanded, pendingExpansion == nil, wantsReviewFocus, active == ownPID,
+        guard isReviewExpanded, !isReviewWaitingForFocus, wantsReviewFocus, active == ownPID,
               reviewIsKey(panel), panel.allowsReviewFocus else { throw AppFailure.focusChanged }
         let session = focusSession
         focusAcquisition?.cancel(); focusAcquisition = nil
@@ -866,7 +876,7 @@ final class CorrectionStatusPresenter {
                                 isCurrent: (@MainActor () async -> Bool)?) {
         dismissal?.cancel(); dismissal = nil; tracking?.cancel(); tracking = nil
         isReviewExpanded = false; current = status
-        pendingExpansion = nil
+        pendingReviewKeyAction = nil; reviewFocus.keyboardReady = false
         focusAcquisition?.cancel(); focusAcquisition = nil; wantsReviewFocus = false
         panel.reviewKeyAction = nil; panel.allowsReviewFocus = false
         panel.ignoresMouseEvents = true
@@ -906,7 +916,7 @@ final class CorrectionStatusPresenter {
                 }
                 pill.update(current ?? status, reduceMotion: NSWorkspace.shared.accessibilityDisplayShouldReduceMotion)
                 if isReviewExpanded && wantsReviewFocus {
-                    if pendingExpansion != nil {
+                    if isReviewWaitingForFocus {
                         // A click can complete activation after the initial timeout.
                         if focusAcquisition == nil && frontmost() == ownPID && reviewIsKey(panel) { acquireReviewFocus() }
                     } else if !restoringSource && (!reviewIsKey(panel) || frontmost() == reviewSourcePID) {
@@ -933,7 +943,7 @@ final class CorrectionStatusPresenter {
         dismissal?.cancel(); dismissal = nil; tracking?.cancel(); tracking = nil; current = nil
         contraction?.cancel(); contraction = nil; isReviewExpanded = false
         focusAcquisition?.cancel(); focusAcquisition = nil; focusSession = UUID()
-        pendingExpansion = nil
+        pendingReviewKeyAction = nil; reviewFocus.keyboardReady = false
         reviewSourcePID = nil; wantsReviewFocus = false; restoringSource = false
         panel.reviewKeyAction = nil; panel.allowsReviewFocus = false
         pill.reset(); panel.orderOut(nil)

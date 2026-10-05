@@ -4,7 +4,8 @@ Typo Bouncer is a native macOS 27 menu-bar app using Swift 6 strict concurrency.
 App code belongs in `App/`; pure logic belongs in `Packages/BouncerCore/`.
 Read [README.md](README.md), [PRIVACY.md](PRIVACY.md) and [SECURITY.md](SECURITY.md)
 for the product behavior and safety requirements.
-Use Apple frameworks only, without app networking or cloud model calls.
+Use Apple frameworks only. Networking is restricted to the isolated GitHub software
+updater; correction/model/clipboard code must never network or call cloud models.
 
 ## Development
 

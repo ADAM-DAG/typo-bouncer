@@ -8,16 +8,22 @@ Built from scratch in Swift 6 with Apple frameworks only. MIT © 2026 Adam Daghm
 Requires **macOS 27**, an **Apple Silicon Mac**, Apple Intelligence enabled and an
 available local model. Distribution is a **DMG through GitHub Releases**.
 
-The pre-release source uses the [MIT license](LICENSE). Its GitHub home is
-[ADAM-DAG/typo-bouncer](https://github.com/ADAM-DAG/typo-bouncer).
-No public binary release is available yet.
-A local Developer ID DMG has been signed, notarized and stapled.
+Download [Typo Bouncer 0.1.0 (build 30)](https://github.com/ADAM-DAG/typo-bouncer/releases/tag/v0.1.0).
+The app and DMG are Developer ID signed, notarized and stapled.
+Source is available under the [MIT license](LICENSE). This is an early public release.
 See [verification and remaining release checks](docs/KNOWN_LIMITATIONS.md), including known Dutch
 model-quality failures, local model-service/test failures and pending clean-Mac
 installation acceptance.
 
-When a release is available, open its DMG, drag **Typo Bouncer** to **Applications**,
+Open the release DMG, drag **Typo Bouncer** to **Applications**,
 then open the app. It runs in the menu bar. Reopening opens Settings.
+
+Release builds check for updates on GitHub automatically once a day. When an update is
+available, choose **Update and relaunch** in Settings; the app downloads, verifies and
+installs it without a browser or manual reinstall. You can disable automatic checks
+and use **Check now**. Install in `/Applications` or `~/Applications` on a writable
+local disk. Updates keep the existing signing identity; development builds cannot
+silently switch to release signing. The first installation still uses the DMG.
 
 ## Correct text
 
@@ -36,6 +42,7 @@ Select an Auto mode:
 
 Automatic modes are opt-in. Clean's conservative rules cover passages up to 400
 characters. All modes verify the target field; uncertain formatting needs review.
+When a correction needs approval, its review opens automatically beside the field.
 The local model can miss errors or propose incorrect changes. Check meaning and names.
 Use the target app's own **⌘Z** to undo.
 
@@ -74,8 +81,9 @@ See [field compatibility](docs/COMPATIBILITY.md) and [known limitations](docs/KN
 
 The menu has Correct text, Cancel while working, Review when needed, Settings and Quit.
 There is no built-in editor, clipboard tool, correction history or automated Undo.
-The app has no networking, cloud fallback, analytics or text logging. Selections and
-corrections stay in memory. See [privacy](PRIVACY.md) and [security](SECURITY.md).
+Networking is limited to GitHub software updates. There is no cloud fallback,
+analytics or text logging. Selections and corrections stay in memory and never enter
+the updater. See [privacy](PRIVACY.md) and [security](SECURITY.md).
 
 ## Build and verify
 

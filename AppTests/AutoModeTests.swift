@@ -2,6 +2,7 @@ import AppKit
 import ApplicationServices
 import BouncerCore
 import QuartzCore
+import SwiftUI
 import XCTest
 @testable import TypoBouncer
 
@@ -822,11 +823,15 @@ private actor WordingProofreader: ProofreadingService {
         let coordinator = ProofreadingCoordinator(service: AutoProofreader())
         defer { presenter.hide() }
         presenter.showReview(coordinator: coordinator, sourcePID: 123, apply: {}, collapse: {})
+        XCTAssertGreaterThan(presenter.panel.frame.width, StatusPillView.canvasSize.width)
+        XCTAssertTrue(presenter.isReviewWaitingForFocus)
+        XCTAssertNil(presenter.panel.reviewKeyAction)
         try await Task.sleep(for: .milliseconds(1050)) // Past the focus-acquisition deadline.
         XCTAssertTrue(presenter.panel.isVisible)
         XCTAssertTrue(presenter.isReviewExpanded)
         XCTAssertTrue(presenter.isReviewWaitingForFocus)
-        XCTAssertEqual(presenter.panel.frame.size, StatusPillView.canvasSize)
+        XCTAssertGreaterThan(presenter.panel.frame.width, StatusPillView.canvasSize.width)
+        XCTAssertNil(presenter.panel.reviewKeyAction)
         XCTAssertFalse(presenter.panel.ignoresMouseEvents)
         XCTAssertTrue(presenter.panel.canBecomeKey)
         key = true; active = 321 // Clicking the retained preview can focus it later.
@@ -838,7 +843,7 @@ private actor WordingProofreader: ProofreadingService {
         XCTAssertEqual(activations, 2) // The explicit retry may request activation again.
     }
 
-    func testReviewDoesNotExpandOrApplyWhileTheSourceStillOwnsActivation() async throws {
+    func testReviewIsVisibleButCannotApplyWhileTheSourceStillOwnsActivation() async throws {
         var pastes = 0
         let presenter = CorrectionStatusPresenter(frontmost: { 123 }, ownPID: 321,
             activateReview: {}, activateSource: { _ in XCTFail("Must not hand off without review focus"); return false },
@@ -851,12 +856,51 @@ private actor WordingProofreader: ProofreadingService {
         presenter.showReview(coordinator: coordinator, sourcePID: 123, apply: { coordinator.apply() }, collapse: {})
         try await Task.sleep(for: .milliseconds(850))
         XCTAssertTrue(presenter.isReviewWaitingForFocus)
-        XCTAssertEqual(presenter.panel.frame.size, StatusPillView.canvasSize)
+        XCTAssertTrue(presenter.panel.isVisible)
+        XCTAssertGreaterThan(presenter.panel.frame.width, StatusPillView.canvasSize.width)
         XCTAssertNil(presenter.panel.reviewKeyAction)
+        let view = try XCTUnwrap(presenter.panel.contentView?.subviews.first?.subviews.first as? NSHostingView<IslandReviewView>)
+        XCTAssertFalse(view.rootView.focus.keyboardReady)
+        view.rootView.apply() // Mouse approval also requires confirmed review focus.
         do { try await presenter.restoreSourceFocus(); XCTFail("Accepted unconfirmed focus") }
         catch { XCTAssertEqual(error as? AppFailure, .focusChanged) }
         XCTAssertEqual(pastes, 0)
         XCTAssertNotNil(coordinator.result)
+    }
+
+    func testApprovalAutomaticallyShowsChangesInEveryModeWithoutWaitingForActivation() async throws {
+        for mode in AutoMode.allCases {
+            var active: pid_t? = 123
+            var activations = 0
+            let presenter = CorrectionStatusPresenter(frontmost: { active }, ownPID: 321,
+                activateReview: { activations += 1 }, reviewIsKey: { _ in false }, details: {
+                    XCTFail("Approval must not require a details click")
+                })
+            let coordinator = ProofreadingCoordinator(service: AutoProofreader(), capture: AutoCapture(autoSafe: false),
+                insert: { _, _ in XCTFail("Unfocused review must not paste") })
+            defer { coordinator.changed = nil; presenter.hide() }
+            coordinator.changed = { [weak coordinator] in
+                guard let coordinator, let status = coordinator.correctionStatus else { presenter.hide(); return }
+                if coordinator.reviewRequested && !coordinator.working {
+                    presenter.showReview(coordinator: coordinator, sourcePID: 123, apply: {}, collapse: {})
+                } else { presenter.show(status, sourcePID: 123) }
+            }
+            coordinator.proofreadSelection(pid: 123, limit: 1500, mode: mode)
+            let clock = ContinuousClock(), deadline = clock.now.advanced(by: .seconds(2))
+            while coordinator.working && clock.now < deadline { try await Task.sleep(for: .milliseconds(10)) }
+            XCTAssertFalse(coordinator.working)
+            XCTAssertTrue(coordinator.reviewRequested)
+            XCTAssertEqual(coordinator.correctionStatus, .review)
+            XCTAssertEqual(activations, 1)
+            XCTAssertTrue(presenter.panel.isVisible)
+            XCTAssertGreaterThan(presenter.panel.frame.width, StatusPillView.canvasSize.width)
+            XCTAssertTrue(presenter.isReviewWaitingForFocus)
+            XCTAssertNil(presenter.panel.reviewKeyAction)
+            active = 999
+            try await Task.sleep(for: .milliseconds(150))
+            XCTAssertFalse(presenter.panel.isVisible)
+            XCTAssertEqual(activations, 1) // Never reclaim focus after a user switch.
+        }
     }
 
     func testExpandedReviewClosesWhenKeyboardFocusLeavesAndCanBeExplicitlyReopened() async throws {
@@ -870,7 +914,7 @@ private actor WordingProofreader: ProofreadingService {
         defer { presenter.hide() }
         presenter.showReview(coordinator: coordinator, sourcePID: 123, apply: {}, collapse: {})
         XCTAssertTrue(presenter.isReviewWaitingForFocus)
-        XCTAssertEqual(presenter.panel.frame.size, StatusPillView.canvasSize)
+        XCTAssertGreaterThan(presenter.panel.frame.width, StatusPillView.canvasSize.width)
         try await Task.sleep(for: .milliseconds(120))
         XCTAssertFalse(presenter.isReviewWaitingForFocus)
         XCTAssertGreaterThan(presenter.panel.frame.width, StatusPillView.canvasSize.width)
@@ -924,7 +968,7 @@ private actor WordingProofreader: ProofreadingService {
         XCTAssertNotNil(coordinator.result)
     }
 
-    func testEnterIsConsumedDuringFocusAcquisitionAndAppliesOnlyOnceAfterExpansion() async throws {
+    func testEnterIsConsumedDuringFocusAcquisitionAndAppliesOnlyOnceAfterFocusIsConfirmed() async throws {
         var active: pid_t? = 123
         var key = false
         var applies = 0
@@ -942,7 +986,7 @@ private actor WordingProofreader: ProofreadingService {
         }
         XCTAssertTrue(presenter.panel.consumeReviewKey(event(.keyDown), focused: true))
         XCTAssertTrue(presenter.panel.consumeReviewKey(event(.keyUp), focused: true))
-        XCTAssertEqual(applies, 0) // A not-yet-presented correction cannot be accepted.
+        XCTAssertEqual(applies, 0) // Visibility alone doesn't authorize keyboard approval.
         XCTAssertTrue(presenter.isReviewWaitingForFocus)
         key = true
         try await Task.sleep(for: .milliseconds(120))

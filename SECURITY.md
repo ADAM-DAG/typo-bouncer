@@ -22,6 +22,13 @@ make captured text or model output trustworthy.
 
 - Model requests use the on-device system model only, in process, with no networking or
   cloud fallback. Text is never executed as instructions, commands or tools.
+- Only the isolated software updater may contact GitHub and its release CDN. Release
+  metadata is untrusted. Downloads must pass SHA-256, the installed designated
+  requirement plus Apple Developer ID/team checks, sealed version/build/minimum-OS
+  checks and Gatekeeper assessment before replacement. Refuse downgrades, development
+  signing migrations and unsupported/read-only installation locations. Installation
+  waits for exit, atomically exchanges same-volume bundles and rolls back on validation
+  or relaunch failure. Never pass text, clipboard data or correction services to the updater.
 - Original text remains untouched on capture, generation, validation or pre-paste
   verification failure. Refuse secure fields and the app denylist. After a posted paste,
   report an unconfirmed result without retrying or attempting a blind undo.
@@ -59,7 +66,7 @@ for suspected text disclosure, wrong-target replacement or other safety-boundary
 Include the affected commit/build, macOS version and reproduction steps using synthetic
 text. Do not put user text, credentials or private findings in public issues.
 
-The source is pre-release, and no binary release or supported release series has been
-published. Fixes are developed on `main`; older development snapshots receive no
+Version 0.1.0 is an early public release. Security fixes target the latest release;
+there is no long-term supported release series. Fixes are developed on `main`; older development snapshots receive no
 maintenance guarantee. Model-quality limitations and pending physical acceptance are
 recorded in [known limitations](docs/KNOWN_LIMITATIONS.md).

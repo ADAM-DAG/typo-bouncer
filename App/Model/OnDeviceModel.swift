@@ -84,11 +84,18 @@ actor OnDeviceModel: ProofreadingService {
     func prewarm() async {
         guard model.isAvailable, !generating, warmed == nil else { return }
         let instructions = Command.proofread.instructions
-        let session = LanguageModelSession(model: model, instructions: instructions)
-        warmed = (instructions, session); session.prewarm()
+        warmSession(instructions: instructions)
         // Cache only fixed instructions/schema counts, never a user's passage or result.
         _ = try? await countInstructions(instructions)
         _ = try? await countSchema(BounceResult.generationSchema, key: "proofread")
+    }
+
+    private func warmSession(instructions: String) {
+        // Only fixed rules enter this unused session. A session that has seen a
+        // passage is never retained or reused for a subsequent correction.
+        let session = LanguageModelSession(model: model, instructions: instructions)
+        warmed = (instructions, session)
+        session.prewarm()
     }
 
     func correct(_ text: String, limit: Int, command: Command) async throws -> ValidatedCorrection {
@@ -143,7 +150,13 @@ actor OnDeviceModel: ProofreadingService {
             let namesPreserved = ProofreadingTypography.restoreAlignedNameSpelling(original: text, corrected: peel.restore(response))
             let corrected = ProofreadingTypography.removeTrailingWhitespace(
                 ProofreadingTypography.restoreProtectedCapitalization(original: text, corrected: namesPreserved))
-            return try OutputValidator.validate(original: text, corrected: corrected, command: command, nonce: generated.nonce)
+            let correction = try OutputValidator.validate(original: text, corrected: corrected, command: command, nonce: generated.nonce)
+            try Task.checkCancellation()
+            // Use the time between shortcuts to prepare the next fresh session
+            // with this action/language, rather than prewarming immediately before
+            // respond(), when there is no head start. Do not prewarm after failures.
+            warmSession(instructions: generated.instructions)
+            return correction
         } catch let error as LanguageModelError {
             // Do not surface framework debug descriptions: they can include user text.
             switch error {
@@ -282,7 +295,7 @@ actor OnDeviceModel: ProofreadingService {
         return count
     }
 
-    private func generate(_ text: String, command: Command) async throws -> (text: String, nonce: String) {
+    private func generate(_ text: String, command: Command) async throws -> (text: String, nonce: String, instructions: String) {
         try Task.checkCancellation()
         let prepared = PromptBuilder.make(text: text, command: command)
         let promptTokens = try await model.tokenCount(for: prepared.prompt)
@@ -295,9 +308,11 @@ actor OnDeviceModel: ProofreadingService {
         }
         let options = GenerationOptions(samplingMode: .greedy, maximumResponseTokens: outputBudget)
         let session: LanguageModelSession
-        if let warm = warmed, warm.instructions == prepared.instructions { session = warm.session; warmed = nil }
+        if let warm = warmed, warm.instructions == prepared.instructions { session = warm.session }
         else { session = LanguageModelSession(model: model, instructions: prepared.instructions) }
-        session.prewarm()
+        // Also release an unused prewarm when the action/language changes, so
+        // speculative preparation cannot compete with the current response.
+        warmed = nil
         var response: String
         do {
             response = try await respond(session, prompt: prepared.prompt, command: command, options: options)
@@ -316,7 +331,7 @@ actor OnDeviceModel: ProofreadingService {
             response = ChatShorthand.restoringExpansions(original: text, corrected: response)
         }
         let namesPreserved = ProofreadingTypography.restoreAlignedNameSpelling(original: text, corrected: response)
-        return (ProofreadingTypography.restoreProtectedCapitalization(original: text, corrected: namesPreserved), prepared.nonce)
+        return (ProofreadingTypography.restoreProtectedCapitalization(original: text, corrected: namesPreserved), prepared.nonce, prepared.instructions)
     }
 
     private func respond(_ session: LanguageModelSession, prompt: String, command: Command,

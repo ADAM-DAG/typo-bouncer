@@ -18,6 +18,13 @@ import XCTest
             XCTAssertTrue(SpellingHints.candidates(text, language: "en").isEmpty)
         }
     }
+    func testActionsAndTheirObjectsUseTheMainProofreaderWithoutSpeculativeContextRanking() {
+        for text in ["Please bring the book home.", "I will send the file tomorrow",
+                     "Adam found the nest in a tree.", "The bird is building a nest.",
+                     "Adam is in the nest."] {
+            XCTAssertTrue(SpellingHints.candidates(text, language: "en").isEmpty)
+        }
+    }
     func testParallelContextMergeKeepsPunctuationAndNeverCombinesDifferentRewrites() {
         XCTAssertEqual(SpellingHints.mergeContext(original: "adam is the nest", generated: "Adam is the nest.", reviewed: "adam is the best"), "Adam is the best.")
         XCTAssertEqual(SpellingHints.mergeContext(original: "adam is the nest", generated: "Adam found the nest.", reviewed: "adam is the best"), "Adam found the nest.")
